@@ -134,7 +134,7 @@ namespace ProjektMVC.Migrations
                     b.ToTable("EditProduktViewModel");
                 });
 
-            modelBuilder.Entity("Projekt_MVC.Models.Salon.CreateSalonListViewModel", b =>
+            modelBuilder.Entity("Projekt_MVC.Models.Sklep.CreateSklepListViewModel", b =>
                 {
                     b.Property<string>("Address")
                         .IsRequired()
@@ -165,10 +165,10 @@ namespace ProjektMVC.Migrations
                         .HasMaxLength(9)
                         .HasColumnType("TEXT");
 
-                    b.ToTable("CreateSalonListViewModel");
+                    b.ToTable("CreateSklepListViewModel");
                 });
 
-            modelBuilder.Entity("Projekt_MVC.Models.Salon.EditSalonModel", b =>
+            modelBuilder.Entity("Projekt_MVC.Models.Sklep.EditSklepModel", b =>
                 {
                     b.Property<string>("Address")
                         .IsRequired()
@@ -202,10 +202,10 @@ namespace ProjektMVC.Migrations
                         .HasMaxLength(9)
                         .HasColumnType("TEXT");
 
-                    b.ToTable("EditSalonModel");
+                    b.ToTable("EditSklepModel");
                 });
 
-            modelBuilder.Entity("Projekt_MVC.Models.Salon.SalonModel", b =>
+            modelBuilder.Entity("Projekt_MVC.Models.Sklep.SklepModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -237,7 +237,7 @@ namespace ProjektMVC.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Salons");
+                    b.ToTable("Sklepy");
                 });
 
             modelBuilder.Entity("Projekt_MVC.Models.TDriveModel.CreatePracownicyViewModel", b =>

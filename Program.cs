@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Projekt_MVC.Context;
 using Projekt_MVC.Models;
 using Projekt_MVC.Services.Produkt;
-using Projekt_MVC.Services.SalonList;
+using Projekt_MVC.Services.SklepList;
 using Projekt_MVC.Services.Pracownicy;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +16,7 @@ builder.Services.AddDbContext<MainContext>(options =>
 
 builder.Services.AddScoped<IProduktService, ProduktService>();
 builder.Services.AddScoped<IPracownicyService, PracownicyService>();
-builder.Services.AddScoped<ISalonListService, SalonListService>();
+builder.Services.AddScoped<ISklepListService, SklepListService>();
 
 
 var app = builder.Build();

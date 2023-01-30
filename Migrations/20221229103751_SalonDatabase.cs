@@ -5,7 +5,7 @@
 namespace ProjektMVC.Migrations
 {
     /// <inheritdoc />
-    public partial class SalonDatabase : Migration
+    public partial class SklepDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,15 +39,13 @@ namespace ProjektMVC.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CreateSalonListViewModel",
+                name: "CreateSklepListViewModel",
                 columns: table => new
                 {
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     Address = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Phone = table.Column<string>(type: "TEXT", maxLength: 9, nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
-                    OpenHours = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    OpenDays = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
+
                 },
                 constraints: table =>
                 {
@@ -81,16 +79,14 @@ namespace ProjektMVC.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EditSalonModel",
+                name: "EditSklepModel",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     Address = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Phone = table.Column<string>(type: "TEXT", maxLength: 9, nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
-                    OpenHours = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    OpenDays = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
+
                 },
                 constraints: table =>
                 {
@@ -110,21 +106,19 @@ namespace ProjektMVC.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Salons",
+                name: "Sklepy",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Address = table.Column<string>(type: "TEXT", nullable: false),
-                    Phone = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
-                    OpenHours = table.Column<string>(type: "TEXT", nullable: false),
-                    OpenDays = table.Column<string>(type: "TEXT", nullable: false)
+
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Salons", x => x.ID);
+                    table.PrimaryKey("PK_Sklepy", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -154,7 +148,7 @@ namespace ProjektMVC.Migrations
                 name: "CreateProduktViewModel");
 
             migrationBuilder.DropTable(
-                name: "CreateSalonListViewModel");
+                name: "CreateSklepListViewModel");
 
             migrationBuilder.DropTable(
                 name: "CreatePracownicyViewModel");
@@ -163,13 +157,13 @@ namespace ProjektMVC.Migrations
                 name: "EditProduktViewModel");
 
             migrationBuilder.DropTable(
-                name: "EditSalonModel");
+                name: "EditSklepModel");
 
             migrationBuilder.DropTable(
                 name: "EditPracownicyModel");
 
             migrationBuilder.DropTable(
-                name: "Salons");
+                name: "Sklepy");
 
             migrationBuilder.DropTable(
                 name: "PracownicyLista");

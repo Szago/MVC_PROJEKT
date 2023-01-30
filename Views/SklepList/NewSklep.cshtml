@@ -1,4 +1,4 @@
-﻿@model Projekt_MVC.Models.Salon.CreateSalonListViewModel
+﻿@model Projekt_MVC.Models.Sklep.CreateSklepListViewModel
 
 
 @Html.AntiForgeryToken()
@@ -11,11 +11,11 @@
 </style>
 
 
-<h3 class="display-5 text-center link-dark fw-bold mb-3">Dodaj dane o salonie</h3>
+<h3 class="display-5 text-center link-dark fw-bold mb-3">Dodaj dane o sklepie</h3>
 <hr />
 <div class="row justify-content-center">
     <div class="col-md-4">
-        <form method="post" asp-controller="SalonList" asp-action="CreateNewSalon">
+        <form method="post" asp-controller="SklepList" asp-action="CreateNewSklep">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group fw-bold">
                 <label asp-for="Name" class="control-label mb-1"></label>
@@ -34,29 +34,14 @@
                 @*@Html.EditorFor(Model => Model.Address, new { htmlAttributes = new { @id="address", @name="address", @required="required" } })
                 @Html.ValidationMessageFor(Model => Model.Name)*@
             </div>
-            <div class="form-group fw-bold">
-                <label asp-for="Phone" class="control-label mb-1"></label>
-                <input asp-for="Phone" name="Phone" id="Phone" class="form-control mb-1" />
-                <span asp-validation-for="Phone" class="text" id="danger"></span>
-                @*@Html.EditorFor(Model => Model.Phone, new { htmlAttributes = new { @id="Phone", @name="Phone", @required="required" } })
-                @Html.ValidationMessageFor(Model => Model.Phone)*@
-            </div>
+
             <div class="form-group fw-bold">
                 <label asp-for="Email" class="control-label mb-1"></label>
                 <input asp-for="Email" class="form-control mb-1" />
                 <span asp-validation-for="Email" class="text" id="danger"></span>
             </div>
-            <div class="form-group fw-bold">
-                <label asp-for="OpenHours" class="control-label mb-1"></label>
-                <input asp-for="OpenHours" class="form-control mb-1" />
-                <span asp-validation-for="OpenHours" class="text" id="danger"></span>
-            </div>
-            <div class="form-group fw-bold">
-                <label asp-for="OpenDays" class="control-label mb-1"></label>
-                <input asp-for="OpenDays" class="form-control mb-1" />
-                <span asp-validation-for="OpenDays" class="text" id="danger"></span>
 
-            </div>
+
             <div class="form-group fw-bold">
                 <input type="submit" value="Dodaj" class="btn btn-primary btn-lg mx-auto d-block w-25" id="add" />
             </div>
@@ -64,10 +49,7 @@
     </div>
 </div>
 
-<div class="text-center">
-    <br />
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 
 

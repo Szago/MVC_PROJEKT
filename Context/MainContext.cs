@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projekt_MVC.Models.Produkt;
-using Projekt_MVC.Models.Salon;
+using Projekt_MVC.Models.Sklep;
 using Projekt_MVC.Models.TDriveModel;
 
 namespace Projekt_MVC.Context
@@ -16,7 +16,7 @@ namespace Projekt_MVC.Context
 
         public DbSet<ProduktModel> Produkty { get; set; }
         public DbSet<PracownicyModel> PracownicyLista { get; set; }
-        public DbSet<SalonModel> Salons { get; set; }
+        public DbSet<SklepModel> Sklepy { get; set; }
         
 
 
@@ -25,7 +25,7 @@ namespace Projekt_MVC.Context
         {
             modelBuilder.Entity<ProduktModel>().ToTable("Produkty");
             modelBuilder.Entity<PracownicyModel>().ToTable("PracownicyLista");
-            modelBuilder.Entity<SalonModel>().ToTable("Salons");
+            modelBuilder.Entity<SklepModel>().ToTable("Sklepy");
         }
 
 

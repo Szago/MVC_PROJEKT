@@ -1,0 +1,73 @@
+﻿@model Projekt_MVC.Models.Sklep.SklepListViewModel
+@{
+    ViewData["Title"] = "Lista Sklepów";
+}
+<style>
+    body {
+        background-color: #d4d4d4;
+        
+    }
+
+    .table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        background-color: darkblue;
+    }
+
+        
+
+         tr:nth-child(even) {
+        background-color:darkslategrey;
+        }
+
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        background-color: red;
+    }
+        
+     tr:hover {
+            background-color: ThreeDDarkShadow;
+        }
+
+     th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: red;
+            color: white;
+        }
+</style>
+<h1 class="display-4 text-center link-dark fw-bold mb-3">Dostępne Sklepy</h1>
+<br />
+<a style="width:150px" class="btn btn-primary btn-lg mx-auto d-block w-20 " asp-controller="SklepList" asp-action="NewSklep" role="button">Dodaj Sklep</a>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="row">ID</th>
+            <th scope="row">Name</th>
+            <th scope="row">Address</th>
+            <th scope="row">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GetSklepy)
+        {
+            <tr>
+                <th scope="row">@item.ID</th>
+                <th scope="row">@item.Name</th>
+                <th scope="row">@item.Address</th>
+                <th scope="row">@item.Email</th>
+
+                <td>
+
+                    <a class="btn btn-primary btn-sm float-start" id="delete" asp-controller="SklepList" asp-action="DeleteSklepList" asp-route-id="@item.ID" role="button">Usuń sklep</a>
+                    <a class="btn btn-primary btn-sm float-end" id="edit" asp-controller="SklepList" asp-action="EditSklepList" asp-route-id="@item.ID" role="button">Edytuj sklep</a>
+           
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projekt_MVC.Context;
 using Projekt_MVC.Models.Produkt;
-using Projekt_MVC.Models.Salon;
+using Projekt_MVC.Models.Sklep;
 using Projekt_MVC.Models.TDriveModel;
 
 namespace Projekt_MVC.Models
@@ -43,20 +43,17 @@ namespace Projekt_MVC.Models
                     }
 
                 );
-                if (context.Salons.Any())
+                if (context.Sklepy.Any())
                 {
                     return;
                 }
-                context.Salons.AddRange(
-                   new SalonModel()
+                context.Sklepy.AddRange(
+                   new SklepModel()
                    {
                        
                        ID=1,
-                       Name = "Salon 1",
+                       Name = "Sklep 1",
                        Address = "Adres 1",
-                       Phone = "123456789",
-                       OpenHours = "8:00 - 16:00",
-                       OpenDays = "Poniedziałek - Piątek",
                        Email = "testemail@testmail.com"
                        
                    }

@@ -1,67 +1,67 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Projekt_MVC.Services.SalonList;
-using Projekt_MVC.Models.Salon;
+using Projekt_MVC.Services.SklepList;
+using Projekt_MVC.Models.Sklep;
 using System.Xml.Linq;
 
 namespace Projekt_MVC.Controllers
 {
-    public class SalonListController : Controller
+    public class SklepListController : Controller
     {
-        private readonly ILogger<SalonListController> _logger;
-        private readonly ISalonListService _SalonListService;
-        public SalonListController(ILogger<SalonListController> logger, ISalonListService salonListService)
+        private readonly ILogger<SklepListController> _logger;
+        private readonly ISklepListService _SklepListService;
+        public SklepListController(ILogger<SklepListController> logger, ISklepListService sklepListService)
         {
             _logger = logger;
-            _SalonListService = salonListService;
+            _SklepListService = sklepListService;
         }
         public IActionResult Index()
         {
             try
             {
-                var model = new SalonListViewModel()
+                var model = new SklepListViewModel()
                 {
-                    GetSalons = _SalonListService.GetSalons()
+                    GetSklepy = _SklepListService.GetSklepy()
                 };
                
                 return View(model);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while getting salons");
+                _logger.LogError(ex, "Error while getting sklepy");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
 
 
         }
 
-        public IActionResult NewSalon()
+        public IActionResult NewSklep()
         {
             try
             {
 
-                var model = new CreateSalonListViewModel();
+                var model = new CreateSklepListViewModel();
                 if (ModelState.IsValid)
                 {
                     return View(model);
                 }
                 else
                 {
-                    return RedirectToAction("NewSalon");
+                    return RedirectToAction("NewSklep");
                 }
                 
 
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while creating new salons");
+                _logger.LogError(ex, "Error while creating new sklepy");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
     }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateNewSalon(CreateSalonListViewModel model)
+        public IActionResult CreateNewSklep(CreateSklepListViewModel model)
         {
             try
             {
@@ -70,25 +70,25 @@ namespace Projekt_MVC.Controllers
         
                 if (ModelState.IsValid)
                 {
-                    _SalonListService.CreateSalon(model.Name, model.Address, model.Phone, model.Email, model.OpenHours, model.OpenDays);
+                    _SklepListService.CreateSklep(model.Name, model.Address,  model.Email);
                     return RedirectToAction("Index");
                 }
                 else
                 {
                     Console.WriteLine(Json(model));
-                    return RedirectToAction("NewSalon");
+                    return RedirectToAction("NewSklep");
                 }
 
 
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while creating new salons");
+                _logger.LogError(ex, "Error while creating new sklepy");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
             
         }
-        public IActionResult DeleteSalonList(int id)
+        public IActionResult DeleteSklepList(int id)
         {
             try
             {
@@ -96,18 +96,18 @@ namespace Projekt_MVC.Controllers
                 {
                     return NotFound();
                 }
-                _SalonListService.DeleteSalon(id);
+                _SklepListService.DeleteSklep(id);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while deleting salons");
+                _logger.LogError(ex, "Error while deleting sklepy");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
       
         }
 
-        public IActionResult EditSalonList(int id)
+        public IActionResult EditSklepList(int id)
         {
             try
             {
@@ -117,76 +117,73 @@ namespace Projekt_MVC.Controllers
                     {
                         return NotFound();
                     }
-                    var SL = _SalonListService.GetSalons(id);
-                    var model = new EditSalonModel()
+                    var SL = _SklepListService.GetSklepy(id);
+                    var model = new EditSklepModel()
                     {
 
                         ID = SL.ID,
                         Name = SL.Name,
                         Address = SL.Address,
-                        Phone = SL.Phone,
                         Email = SL.Email,
-                        OpenHours = SL.OpenHours,
-                        OpenDays = SL.OpenDays,
                     };
 
                     return View(model);
                 }
                 else
                 {
-                    return RedirectToAction("EditSalonList", new { id = id });
+                    return RedirectToAction("EditSklepList", new { id = id });
                 }
                
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while editing salons");
+                _logger.LogError(ex, "Error while editing sklepy");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
             
         }
-        public IActionResult EditSalonDetails(long id, string name, string address, string phone, string email, string openhours, string opendays)
+        public IActionResult EditSklepDetails(long id, string name, string address, string email)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _SalonListService.EditSalonList(id, name, address, phone, email, openhours, opendays);
+                    _SklepListService.EditSklepList(id, name, address,  email);
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    return RedirectToAction("EditSalonList", new { id = id });
+                    return RedirectToAction("EditSklepList", new { id = id });
                 }
                 
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while editing salons");
+                _logger.LogError(ex, "Error while editing sklepy");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
          
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetSalonListJSON()
+        public async Task<ActionResult> GetSklepListJSON()
         {
             try
             {
-                var model = new SalonListViewModel()
+                var model = new SklepListViewModel()
                 {
-                    GetSalons = _SalonListService.GetSalons()
+                    GetSklepy = _SklepListService.GetSklepy()
                 };
                 return Json(model);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while getting salons");
+                _logger.LogError(ex, "Error while getting sklepy");
                 return Json(new { Status = "Get Failed", ErrorMessage = ex.Message });
             }
         }
         [HttpDelete]
-        public async Task<ActionResult> DeleteSalonJSON(int id)
+        public async Task<ActionResult> DeleteSklepJSON(int id)
         {
             try
             {
@@ -194,23 +191,23 @@ namespace Projekt_MVC.Controllers
                 {
                     throw new Exception("Niepoprawne ID");
                 }
-                _SalonListService.DeleteSalon(id);
+                _SklepListService.DeleteSklep(id);
                 return Json(new { Status = "Delete Succesfull" });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while deleting salons");
+                _logger.LogError(ex, "Error while deleting sklepy");
                 return Json(new { Status = "Delete Failed", ErrorMessage = ex.Message });
             }
         }
         [HttpPost]
-        public async Task<ActionResult> CreateNewSalonJSON(string name, string address, string phone, string email, string openhours, string opendays)
+        public async Task<ActionResult> CreateNewSklepJSON(string name, string address,  string email)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _SalonListService.CreateSalon(name, address, phone, email, openhours, opendays);
+                    _SklepListService.CreateSklep(name, address, email);
                     return Json(new { Status = "Add Succesfull" });
                 }
                 else
@@ -221,21 +218,21 @@ namespace Projekt_MVC.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while creating new salons");
+                _logger.LogError(ex, "Error while creating new sklepy");
                 return Json(new { Status = "Add Failed", ErrorMessage = ex.Message });
             }
         }
         [HttpPut]
-        public async Task<ActionResult> EditSalonDetailsJSON(long id, string name, string address, string phone, string email, string openhours, string opendays)
+        public async Task<ActionResult> EditSklepDetailsJSON(long id, string name, string address, string email)
         {
             try
             {
-                _SalonListService.EditSalonList(id, name, address, phone, email, openhours, opendays);
+                _SklepListService.EditSklepList(id, name, address, email);
                 return Json(new { Status = "Edit Succesfull" });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while editing salons");
+                _logger.LogError(ex, "Error while editing sklepy");
                 return Json(new { Status = "Edit Failed", ErrorMessage = ex.Message });
             }
         }
