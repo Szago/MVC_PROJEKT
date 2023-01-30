@@ -1,0 +1,52 @@
+﻿@using Projekt_MVC.Models.Produkt;
+@model Projekt_MVC.Models.Produkt.ProduktViewModel
+@{
+    ViewData["Title"] = "Produkt Models";
+    var l= $"NewPracownicy?ProduktID=";
+}
+<style>
+    body {
+        background-color: #d4d4d4;
+        color:white;
+    }
+    figure{
+        background-color:darkkhaki;
+        width: 20%;
+        margin: 20px;
+    }
+</style>
+<div>
+    <h1 class="display-4 text-center link-dark fw-bold mb-3">Produkty</h1>
+    <br />
+
+    <a style="width:150px" class="btn btn-primary btn-lg mx-auto d-block w-20 " asp-area="" asp-controller="ProduktList" asp-action="NewProdukt" role="button">Dodaj Produkt</a>
+    <p></p>
+    <div style="display:flex">
+        
+        @foreach(var item in Model.Produkty)
+         {
+
+
+            
+            <figure class="figure mx-auto d-block">                
+
+                <h5><figcaption class="figure-caption text-center link-dark">ID: @item.ProduktID<p></p>Nazwa: @item.Name  <p></p>    Kategoria: @item.Model <p></p></figcaption></h5>
+                <h5><figcaption class="figure-caption text-center link-dark">Cena: @item.Price <p></p> 
+                
+                <a class="btn btn-primary btn-sm mx-auto d-block w-20" id="delete" asp-controller="ProduktList" asp-action="DeleteProdukt" asp-route-id="@item.ProduktID" role="button">Usuń produkt</a> <p></p>
+                <a class="btn btn-primary btn-sm  mx-auto d-block w-20" id="edit" asp-controller="ProduktList" asp-action="EditProdukt" asp-route-id="@item.ProduktID" role="button">Edytuj produkt</a>
+                <p></p>
+
+                <hr>
+
+        </figure>
+        <br />
+        }
+    </div>
+
+
+
+
+
+   
+</div>

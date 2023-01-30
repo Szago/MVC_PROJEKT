@@ -1,0 +1,68 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16.5px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+ 
+}
+
+table, table tbody tr, table thead th {
+    border-color: black;
+    align-content: center;
+    text-align: center;
+    background-color: #404040;
+    color: white;
+}
+.btn-primary {
+    background-color: #A6A6A6;
+    border: none;
+    color: black;
+}
+
+    .btn-primary:hover {
+        background-color: cornflowerblue;
+        border: none;
+        color: black;
+    }
+
+.btn-primary:hover#delete {
+    background-color: lightpink;
+    border: none;
+    color: black;
+}
+
+.btn-primary:hover#add{
+    background-color: lightcoral;
+    border: none;
+    color: black;
+}
+.btn-primary:hover#edit {
+    background-color: lightcoral;
+    border: none;
+    color: black;
+        }
+
+.text#danger {
+    color: yellow/*#FF0000*/;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+
+
+.bg-nav {
+    background-color: #262626;
+}

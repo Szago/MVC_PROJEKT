@@ -1,0 +1,53 @@
+﻿@model Projekt_MVC.Models.TDriveModel.PracownicyViewModel
+@{
+    ViewData["Title"] = "PracownicyLista";
+    
+}
+
+<style>
+    body {
+        background-color: #d4d4d4;
+    }
+    div{
+
+    }
+    table, table tbody tr, table thead th{
+        background-color:slateblue;
+    }
+    td{
+        border: 3px solid black;
+    }
+    thead{
+        background-color:blueviolet;
+    }
+</style>
+<h1 class="display-4 text-center fw-bold mb-5">Lista pracowników</h1>
+<div style="position:absolute; left:25%; right:25%; top:25%;">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="row">ID</th>
+            <th scope="row">Imie</th>
+            <th scope="row">Nazwisko</th>
+            <th scope="row">Numer Telefonu<th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PracownicyLista)
+        {
+            <tr>
+                <th scope="row">@item.ID</th>
+                <th scope="row">@item.Imie</th>
+                <th scope="row">@item.Nazwisko</th>
+                <th scope="row">@item.NrTel<th>
+
+               
+                <td>
+                    <a class="btn btn-primary btn-sm" id="delete" asp-controller="Pracownicy" asp-action="DeletePracownicy" asp-route-id="@item.ID">Zwolnij pracownika</a>
+                    <a class="btn btn-primary btn-sm" id="edit"  asp-controller="Pracownicy" asp-action="EditPracownicy" asp-route-id="@item.ID">Edytuj pracownika</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
