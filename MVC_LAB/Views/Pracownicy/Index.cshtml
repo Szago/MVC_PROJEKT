@@ -1,0 +1,30 @@
+﻿@model MVC_PROJEKT.Models.Pracownicy.PracownicyViewModel
+@{
+    ViewData["Title"] = "Pracownicy";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Pracownicy</h1>
+    <a class="btn btn-primary" asp-area="" asp-controller="Pracownicy" asp-action="NewPracownicy" role="button">Create Pracownicy</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dzial</th>
+                <th scope="col">Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Persons)
+            {
+                <tr>
+                    <th scope="row">@item.ID</th>
+                    <th scope="row">@item.Name</th>
+                    <th scope="row">@item.Dzial</th>
+                    <th scope="row">@item.Gender</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

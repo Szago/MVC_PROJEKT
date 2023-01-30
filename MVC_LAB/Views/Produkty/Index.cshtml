@@ -1,0 +1,30 @@
+﻿@model MVC_PROJEKT.Models.Produkty.ProduktyViewModel
+@{
+    ViewData["Title"] = "Produkty";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Produkty</h1>
+    <a class="btn btn-primary" asp-area="" asp-controller="Produkty" asp-action="NewProdukty" role="button">Dodaj Produkt</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Cena</th>
+                <th scope="col">Kategoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Produkty)
+            {
+                <tr>
+                    <th scope="row">@item.ID</th>
+                    <th scope="row">@item.Nazwa</th>
+                    <th scope="row">@item.Cena</th>
+                    <th scope="row">@item.Kategoria</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
